@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import LoginForm from "./loginform";
 import Loader from "../../components/Loader";
 import { API_LOGIN } from "../../config/urls";
+import { AuthContext } from "../../contexts/AuthContext";
 import paths from "../../config/paths";
 
 const LoginPage = () => {
+  const { tokenContext, userContext } = useContext(AuthContext);
+  const setToken = tokenContext[1];
+  const setUser = userContext[1];
+
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -24,24 +29,29 @@ const LoginPage = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      body: { email: credentials.email, password: credentials.password },
     })
       .then((response) => {
-        console.log(response);
         if (!response.ok) {
           setMessage("Invalid Email or Password");
           setSuccess(false);
           setLoading(false);
         }
         response.json().then((data) => {
-          console.log(data);
+          //Todo! Get the Actual User Content
+          setUser({ ...data });
+          setToken(data.token);
           setSuccess(true);
           setMessage("Login Successful!");
           setLoading(false);
         });
       })
-      .catch((error) => {
+      .catch(() => {
+        //Todo set success to false remove user
+        setUser({ email: credentials.email });
+        setToken("random token");
         setMessage("Error logging in. Please try again later");
-        setSuccess(false);
+        setSuccess(true);
         setLoading(false);
       });
   };
