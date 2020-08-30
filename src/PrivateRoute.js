@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./contexts/AuthContext";
-import paths from "./config/paths";
+import { LOGIN } from "./config/paths";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const { tokenContext } = useContext(AuthContext);
@@ -11,7 +11,7 @@ function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={(props) =>
-        authToken ? <Component {...props} /> : <Redirect to={paths.LOGIN} />
+        authToken ? <Component {...props} /> : <Redirect to={LOGIN} />
       }
     />
   );

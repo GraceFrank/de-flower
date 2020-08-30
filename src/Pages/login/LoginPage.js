@@ -4,7 +4,7 @@ import LoginForm from "./loginform";
 import Loader from "../../components/Loader";
 import { API_LOGIN } from "../../config/urls";
 import { AuthContext } from "../../contexts/AuthContext";
-import paths from "../../config/paths";
+import { FLOWERS } from "../../config/paths";
 
 const LoginPage = () => {
   const { tokenContext, userContext } = useContext(AuthContext);
@@ -57,7 +57,7 @@ const LoginPage = () => {
   };
 
   if (success) {
-    return <Redirect to={paths.FLOWERS} />;
+    return <Redirect to={FLOWERS} />;
   }
 
   return (

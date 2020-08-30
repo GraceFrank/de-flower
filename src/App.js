@@ -5,7 +5,7 @@ import { AuthContextProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "./Pages/login/LoginPage";
 import FlowersPage from "./Pages/flowers/FlowersPage";
-import paths from "./config/paths";
+import { FLOWERS, USERS, LOGIN } from "./config/paths";
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route path={paths.LOGIN} component={LoginPage} />
-          <PrivateRoute path={paths.FLOWERS} component={FlowersPage} />
+          <Route path={LOGIN} component={LoginPage} />
+          <PrivateRoute path={FLOWERS} component={FlowersPage} />
         </Switch>
       </Router>
     </AuthContextProvider>
