@@ -5,6 +5,7 @@ import { AuthContextProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "./Pages/login/LoginPage";
 import FlowersPage from "./Pages/flowers/FlowersPage";
+import NotFound from "./Pages/NotFound";
 import { FLOWERS, USERS, LOGIN } from "./config/paths";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/" component={LoginPage} />
           <Route path={LOGIN} component={LoginPage} />
           <PrivateRoute path={FLOWERS} component={FlowersPage} />
+          <Route path="*" exact={true} component={NotFound} />
         </Switch>
       </Router>
     </AuthContextProvider>
