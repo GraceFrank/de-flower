@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import Nav from "../../components/Navbar";
 
-const FlowersPage = (props) => {
+const UsersPage = (props) => {
   const { userContext } = useContext(AuthContext);
   const [user] = userContext;
 
@@ -13,4 +12,4 @@ const FlowersPage = (props) => {
   );
 };
 
-export default FlowersPage;
+export default UsersPage;
