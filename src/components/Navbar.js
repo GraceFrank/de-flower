@@ -37,58 +37,66 @@ const NavBar = () => {
   ));
 
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark bg-${BASE_COLOR}`}>
-      <a className="navbar-brand" href="#">
-        De-Flower
-      </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    <>
+      <nav className={`navbar navbar-expand-lg navbar-dark bg-${BASE_COLOR}`}>
+        <a className="navbar-brand" href="#">
+          De-Flower
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">{menuItems}</ul>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">{menuItems}</ul>
 
-        <span className="navbar-text">
-          <div className="dropdown">
-            <a
-              className="btn btn-info dropdown-toggle"
-              href="#"
-              role="button"
-              id="dropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <ProfileIcon style={{ height: "20px", width: "25px" }} />
-              {user.firstName}
-            </a>
-
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a onClick={logOut} className="dropdown-item text-dark" href="#">
-                Log Out
+          <span className="navbar-text">
+            <div className="dropdown">
+              <a
+                className="btn btn-info dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <ProfileIcon style={{ height: "20px", width: "25px" }} />
+                {user.firstName}
               </a>
-              <Link to={MY_PROFILE}>
+
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a
                   onClick={logOut}
                   className="dropdown-item text-dark"
                   href="#"
                 >
-                  My Profile
+                  Log Out
                 </a>
-              </Link>
+                <Link to={MY_PROFILE}>
+                  <a
+                    onClick={logOut}
+                    className="dropdown-item text-dark"
+                    href="#"
+                  >
+                    My Profile
+                  </a>
+                </Link>
+              </div>
             </div>
-          </div>
-        </span>
-      </div>
-    </nav>
+          </span>
+        </div>
+      </nav>
+
+      <div style={{ height: "4px", background: "#6B2F00" }} />
+    </>
   );
 };
 
