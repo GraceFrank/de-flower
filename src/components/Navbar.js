@@ -8,27 +8,33 @@ import { ReactComponent as ProfileIcon } from "../images/user.svg";
 const { BASE_COLOR } = colors;
 
 const NavBar = () => {
-  const { userContext } = useContext(AuthContext);
-  const [user] = userContext;
+  const { userContext, tokenContext } = useContext(AuthContext);
+  const [user, setUser] = userContext;
+  const setToken = tokenContext[1];
 
   const menus = ["Flowers"];
   if (user.role) menus.push("Users");
 
+  const logOut = () => {
+    setToken("");
+    setUser("");
+  };
+
   const menuItems = menus.map((menu) => (
-    <li class="nav-item active">
+    <li className="nav-item active">
       <Link to={FLOWERS}>
-        <a class="nav-link">{menu}</a>
+        <a className="nav-link">{menu}</a>
       </Link>
     </li>
   ));
 
   return (
-    <nav class={`navbar navbar-expand-lg navbar-dark bg-${BASE_COLOR}`}>
-      <a class="navbar-brand" href="#">
+    <nav className={`navbar navbar-expand-lg navbar-dark bg-${BASE_COLOR}`}>
+      <a className="navbar-brand" href="#">
         De-Flower
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -36,16 +42,16 @@ const NavBar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">{menuItems}</ul>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">{menuItems}</ul>
 
-        <span class="navbar-text">
-          <div class="dropdown">
+        <span className="navbar-text">
+          <div className="dropdown">
             <a
-              class="btn btn-info dropdown-toggle"
+              className="btn btn-info dropdown-toggle"
               href="#"
               role="button"
               id="dropdownMenuLink"
@@ -57,8 +63,8 @@ const NavBar = () => {
               {user.firstName}
             </a>
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item text-dark" href="#">
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a onClick={logOut} className="dropdown-item text-dark" href="#">
                 Log Out
               </a>
             </div>
