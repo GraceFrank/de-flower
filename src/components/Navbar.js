@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { colors } from "../config/constants";
 import { FLOWERS, USERS } from "../config/paths";
@@ -8,22 +8,31 @@ import { ReactComponent as ProfileIcon } from "../images/user.svg";
 const { BASE_COLOR } = colors;
 
 const NavBar = () => {
+  const { pathname } = useLocation();
   const { userContext, tokenContext } = useContext(AuthContext);
   const [user, setUser] = userContext;
   const setToken = tokenContext[1];
 
-  const menus = ["Flowers"];
-  if (user.role) menus.push("Users");
+  const menus = [{ path: FLOWERS, text: "Flowers" }];
+  if (user.role) menus.push({ path: USERS, text: "Users" });
 
   const logOut = () => {
     setToken("");
     setUser("");
   };
 
+  console.log("isPath", pathname === FLOWERS);
   const menuItems = menus.map((menu) => (
-    <li className="nav-item active">
-      <Link to={FLOWERS}>
-        <a className="nav-link">{menu}</a>
+    <li
+      className={`nav-item ${
+        pathname === menu.path && "active font-weight-bold "
+      }`}
+    >
+      <Link to={menu.path}>
+        <a className="nav-link text-white">
+          {menu.text}
+          {pathname === menu.path && <span class="sr-only">(current)</span>}
+        </a>
       </Link>
     </li>
   ));

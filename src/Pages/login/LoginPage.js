@@ -48,7 +48,11 @@ const LoginPage = () => {
       })
       .catch(() => {
         //Todo set success to false remove user
-        setUser({ email: credentials.email });
+        setUser({
+          email: credentials.email,
+          role: "superAdmin",
+          firstName: "Grace",
+        });
         setToken("random token");
         setMessage("Error logging in. Please try again later");
         setSuccess(true);
