@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { colors } from "../config/constants";
-import { FLOWERS, USERS } from "../config/paths";
+import { FLOWERS, USERS, MY_PROFILE } from "../config/paths";
 import { ReactComponent as ProfileIcon } from "../images/user.svg";
 
 const { BASE_COLOR } = colors;
@@ -21,7 +21,6 @@ const NavBar = () => {
     setUser("");
   };
 
-  console.log("isPath", pathname === FLOWERS);
   const menuItems = menus.map((menu) => (
     <li
       className={`nav-item ${
@@ -76,6 +75,15 @@ const NavBar = () => {
               <a onClick={logOut} className="dropdown-item text-dark" href="#">
                 Log Out
               </a>
+              <Link to={MY_PROFILE}>
+                <a
+                  onClick={logOut}
+                  className="dropdown-item text-dark"
+                  href="#"
+                >
+                  My Profile
+                </a>
+              </Link>
             </div>
           </div>
         </span>
