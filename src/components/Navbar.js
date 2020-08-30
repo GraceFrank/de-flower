@@ -30,7 +30,7 @@ const NavBar = () => {
       <Link to={menu.path}>
         <a className="nav-link text-white">
           {menu.text}
-          {pathname === menu.path && <span class="sr-only">(current)</span>}
+          {pathname === menu.path && <span className="sr-only">(current)</span>}
         </a>
       </Link>
     </li>
