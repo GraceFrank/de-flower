@@ -18,11 +18,24 @@ const UsersPage = () => {
     });
   });
 
+  const handleCreateUser = () => {};
+
   return (
     <div style={{ background: "#F0FDFF", height: "100vh" }}>
       <Nav />
-      <div className="container-fluid p-4">
-        <div className="container p-4 bg-white">
+      <div
+        style={{ height: "80px" }}
+        className="shadow-sm bg-white container-fluid w-100"
+      >
+        <div className=" container d-flex h-100 justify-content-between align-items-center ">
+          <h3 className="text-dark">Users</h3>
+          <button type="button" className="btn btn-info  btn-sm">
+            + Create User
+          </button>
+        </div>
+      </div>
+      <div className="container-fluid ">
+        <div style={{ background: "#F0FDFF" }} className="w-80">
           <UsersTable data={users} />
         </div>
       </div>

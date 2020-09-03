@@ -2,60 +2,55 @@ import React from "react";
 import { ReactComponent as AdminIcon } from "../../images/superAdmin.svg";
 import { ReactComponent as StaffIcon } from "../../images/staff.svg";
 
-const iconStyle = { height: "20px", width: "25px" };
+const iconStyle = { height: "70px", width: "70px", marginRight: "20px" };
 
 export default ({ data, handleEdit, handleDelete }) => {
   const users = data.map((user) => {
     const { email, firstName, lastName, role } = user;
     return (
-      <tr key={email}>
-        <th scope="row" key={`${email}role`}>
-          {role ? (
-            <AdminIcon style={iconStyle} />
-          ) : (
-            <StaffIcon style={iconStyle} />
-          )}
-        </th>
-        <td key={`${email}fn`}>{firstName}</td>
-        <td key={`${email}ln`}>{lastName}</td>
-        <td key={`${email}email`}>{email}</td>
-        <td key={`${email}edit`}>
-          <button
-            onClick={() => handleDelete(user)}
-            type="button"
-            className="btn btn-outline-danger"
-          >
-            Danger
-          </button>
-        </td>
-        <td key={`${email}delete`}>
-          <button
-            onClick={() => handleEdit(user)}
-            type="button"
-            className="btn btn-info"
-          >
-            Edit
-          </button>
-        </td>
-      </tr>
+      <div class="card my-4">
+        <div class="card-body">
+          <div className="d-flex">
+            <div>
+              {role ? (
+                <AdminIcon style={iconStyle} />
+              ) : (
+                <StaffIcon style={iconStyle} />
+              )}
+            </div>
+            <div
+              style={{ marginLeft: "20px", minWidth: "85%" }}
+              className=" d-flex justify-content-between align-items-center"
+            >
+              <div>
+                <h4 className="text-dark">
+                  {firstName}&nbsp;{lastName}
+                </h4>
+                <h6 className="font-italic text-dark">{email}</h6>
+              </div>
+
+              <div>
+                <button
+                  onClick={() => handleDelete(user)}
+                  type="button"
+                  className="btn btn-outline-danger  btn-sm mr-5 "
+                >
+                  Danger
+                </button>
+                <button
+                  onClick={() => handleEdit(user)}
+                  type="button"
+                  className="btn btn-info  btn-sm"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   });
 
-  return (
-    <div style={{ background: "white" }}>
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Role</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>{users}</tbody>
-      </table>
-    </div>
-  );
+  return <div style={{ background: "#F0FDFF" }}>{users}</div>;
 };

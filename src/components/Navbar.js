@@ -57,7 +57,7 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">{menuItems}</ul>
 
-          <span className="navbar-text">
+          <span className="navbar-text mr-5">
             <div className="dropdown">
               <a
                 className="btn btn-info dropdown-toggle"
