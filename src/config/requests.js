@@ -13,3 +13,20 @@ export const getAllUsers = (token) => {
     if (response.ok) return response.json().then((data) => data.data);
   });
 };
+
+export const createUser = (token, data) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+    body: JSON.stringify(data),
+  };
+
+  return fetch(API_USERS, options).then((response) => {
+    if (!response.ok) throw new Error();
+
+    return response.json().then((data) => data.data);
+  });
+};
