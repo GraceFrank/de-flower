@@ -1,12 +1,15 @@
 import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Router } from "react-router-dom";
 import LoginForm from "./loginform";
 import Loader from "../../components/Loader";
 import { API_LOGIN } from "../../config/urls";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FLOWERS } from "../../config/paths";
+import { useHistory } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = (props) => {
+  let history = useHistory();
+
   const { tokenContext, userContext } = useContext(AuthContext);
   const setToken = tokenContext[1];
   const setUser = userContext[1];
@@ -29,7 +32,10 @@ const LoginPage = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: { email: credentials.email, password: credentials.password },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -39,30 +45,24 @@ const LoginPage = () => {
         }
         response.json().then((data) => {
           //Todo! Get the Actual User Content
-          setUser({ ...data });
-          setToken(data.token);
+          //Todo! remove hardcoded role
+          console.log("data", data);
+          setUser({ ...data, role: "superAdmin" });
+          setToken(data.data.token);
           setSuccess(true);
           setMessage("Login Successful!");
           setLoading(false);
+          history.push(FLOWERS);
         });
       })
       .catch(() => {
         //Todo set success to false remove user
-        setUser({
-          email: credentials.email,
-          role: "superAdmin",
-          firstName: "Grace",
-        });
         setToken("random token");
         setMessage("Error logging in. Please try again later");
         setSuccess(true);
         setLoading(false);
       });
   };
-
-  if (success) {
-    return <Redirect to={FLOWERS} />;
-  }
 
   return (
     <div className="d-flex justify-content-center align-items-center h-100">
