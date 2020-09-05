@@ -8,7 +8,7 @@ export default ({ data, handleEdit, handleDelete }) => {
   const users = data.map((user) => {
     const { email, firstName, lastName, role } = user;
     return (
-      <div class="card my-4">
+      <div key={user._id} class="card my-4">
         <div class="card-body">
           <div className="d-flex">
             <div>
