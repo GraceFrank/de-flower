@@ -1,4 +1,4 @@
-import { API_USERS } from "./urls";
+import { API_USERS, API_FLOWERS } from "./urls";
 
 export const getAllUsers = (token) => {
   const options = {
@@ -31,7 +31,7 @@ export const createUser = (token, data) => {
   });
 };
 
-export const getFlowers = (token) => {
+export const getFlowers = (token, status = "") => {
   const options = {
     method: "GET",
     headers: {
@@ -39,10 +39,15 @@ export const getFlowers = (token) => {
       "x-auth-token": token,
     },
   };
+  const url = status ? API_FLOWERS : `${API_FLOWERS}?status=${status}`;
 
-  return fetch(API_USERS, options).then((response) => {
+  return fetch(url, options).then((response) => {
     if (!response.ok) throw new Error();
 
-    return response.json().then((data) => data.data);
+    return response.json().then((data) => {
+      return data.data;
+    });
   });
 };
+
+//Todo! Logout users if response is 401

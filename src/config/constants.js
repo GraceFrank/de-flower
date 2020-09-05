@@ -10,3 +10,8 @@ export const statuses = {
   SUCCESS: "SUCCESS",
   FAILURE: "FAILURE",
 };
+
+export const flowerStatues = {
+  COMPLETED: "COMPLETED",
+  IN_PROGRESS: "IN_PROGRESS",
+};

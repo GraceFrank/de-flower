@@ -40,7 +40,6 @@ const UsersPage = () => {
 
   const handleInputChange = (event) => {
     const { value, id } = event.target;
-    console.log("IDDDDDDDD", id, value);
     setNewUser({ ...newUser, [id]: value });
   };
 
