@@ -15,11 +15,14 @@ const FlowersPage = (props) => {
   //type of flowers to load, active or disabled flowers
   const [flowerStatus, setFlowerStatus] = useState(IN_PROGRESS);
   const [flowerData, setFlowerData] = useState([]);
+  const [loadingFlowers, setLoadingFlowers] = useState(false);
 
   useEffect(() => {
     //!todo provide all flowers's context if needed
-    getFlowers(token, flowerStatues).then((data) => {
+    setLoadingFlowers(true)
+    getFlowers(token, flowerStatus).then((data) => {
       setFlowerData([...data]);
+      setLoadingFlowers(false)
     });
   }, []);
 
@@ -27,7 +30,7 @@ const FlowersPage = (props) => {
     <div>
       <Nav />
       <Header />
-      <ActiveFlowers data={flowerData} />
+      <ActiveFlowers data={flowerData} loading={loadingFlowers} />
     </div>
   );
 };

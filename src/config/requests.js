@@ -31,7 +31,7 @@ export const createUser = (token, data) => {
   });
 };
 
-export const getFlowers = (token, status = "") => {
+export const getFlowers = (token, status) => {
   const options = {
     method: "GET",
     headers: {
@@ -39,7 +39,7 @@ export const getFlowers = (token, status = "") => {
       "x-auth-token": token,
     },
   };
-  const url = status ? API_FLOWERS : `${API_FLOWERS}?status=${status}`;
+  const url = status ? `${API_FLOWERS}?status=${status}` : API_FLOWERS;
 
   return fetch(url, options).then((response) => {
     if (!response.ok) throw new Error();

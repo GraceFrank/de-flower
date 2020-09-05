@@ -4,7 +4,7 @@ import Sunburst from "./sunburst";
 import Spinner from "../../components/Spinner";
 const { BASE_COLOR_CODE, ADMIN_COLOR_CODE, USER_COLOR_CODE } = colors;
 
-const Flowers = ({ data }) => {
+const Flowers = ({ data, loading }) => {
   const flowers = data.map((item) => {
     return (
       <div key={item._id}>
@@ -13,7 +13,7 @@ const Flowers = ({ data }) => {
     );
   });
 
-  return <div>{data.length ? flowers : <Spinner />}</div>;
+  return <div>{!loading ? flowers : <Spinner />}</div>;
 };
 
 export default Flowers;

@@ -25,17 +25,18 @@ const Sunburst = ({ chartData, chartId }) => {
 
     // define data fields
     chart.dataFields.value = "value";
-    chart.dataFields.color = "color";
     chart.dataFields.name = "name";
+    chart.dataFields.color = "color";
     chart.dataFields.children = "children";
 
     var level0SeriesTemplate = new am4plugins.SunburstSeries();
-    level0SeriesTemplate.hiddenInLegend = false;
+    level0SeriesTemplate.hiddenInLegend = true;
     chart.seriesTemplates.setKey("0", level0SeriesTemplate);
 
     // this makes labels to be hidden if they don't fit
     level0SeriesTemplate.labels.template.truncate = true;
     level0SeriesTemplate.labels.template.hideOversized = true;
+    level0SeriesTemplate.labels.template.text = "{name}";
 
     level0SeriesTemplate.labels.template.adapter.add("rotation", function (
       rotation,
@@ -56,13 +57,20 @@ const Sunburst = ({ chartData, chartId }) => {
     var level1SeriesTemplate = level0SeriesTemplate.clone();
     chart.seriesTemplates.setKey("1", level1SeriesTemplate);
     level1SeriesTemplate.fillOpacity = 0.75;
-    level1SeriesTemplate.color = "#00000";
     level1SeriesTemplate.hiddenInLegend = true;
 
     var level2SeriesTemplate = level0SeriesTemplate.clone();
     chart.seriesTemplates.setKey("2", level2SeriesTemplate);
-    level2SeriesTemplate.fillOpacity = 0.5;
+    level2SeriesTemplate.fillOpacity = 1;
     level2SeriesTemplate.hiddenInLegend = true;
+    level2SeriesTemplate.labels.template.text = "{name}";
+
+    var level3SeriesTemplate = level0SeriesTemplate.clone();
+    chart.seriesTemplates.setKey("3", level3SeriesTemplate);
+    level3SeriesTemplate.fillOpacity = 1;
+    level3SeriesTemplate.hiddenInLegend = true;
+    level3SeriesTemplate.labels.template.text = "{name}";
+    level3SeriesTemplate.fill = am4core.color("red");
 
     chart.legend = new am4charts.Legend();
 
