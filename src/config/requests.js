@@ -30,3 +30,19 @@ export const createUser = (token, data) => {
     return response.json().then((data) => data.data);
   });
 };
+
+export const getFlowers = (token) => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+  };
+
+  return fetch(API_USERS, options).then((response) => {
+    if (!response.ok) throw new Error();
+
+    return response.json().then((data) => data.data);
+  });
+};

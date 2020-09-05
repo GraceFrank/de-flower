@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Nav from "../../components/Navbar";
+import Header from "./Header";
+import ActiveFlowers from "./ActiveFlowers";
 
 const FlowersPage = (props) => {
-  const { userContext } = useContext(AuthContext);
-  const [user] = userContext;
-
   return (
     <div>
       <Nav />
+      <Header />
+      <ActiveFlowers data={[1, 2, 3, 4, 6]} />
     </div>
   );
 };
