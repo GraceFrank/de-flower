@@ -13,6 +13,7 @@ const { IN_PROGRESS, COMPLETED } = flowerStatues;
 
 const FlowersPage = (props) => {
   const { tokenContext } = useContext(AuthContext);
+
   const [token] = tokenContext;
 
   //type of flowers to load, active or disabled flowers

@@ -23,7 +23,7 @@ const CreateUserModal = ({
         <button
           onClick={() => handleRemoveName(name)}
           type="button"
-          class="btn btn-danger btn-sm"
+          class="btn btn-danger btn-sm" 
         >
           -
         </button>

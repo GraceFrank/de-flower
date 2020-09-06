@@ -16,7 +16,7 @@ export const getAllUsers = (token) => {
 
 export const createUser = (token, data) => {
   const options = {
-    method: "POST",
+    method: "post",
     headers: {
       "Content-Type": "application/json",
       "x-auth-token": token,
@@ -51,19 +51,23 @@ export const getFlowers = (token, status) => {
 };
 
 export const addNames = (token, names) => {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-auth-token": token,
-    },
-    body: JSON.stringify(names),
-  };
+  const myHeaders = new Headers();
+myHeaders.append("x-auth-token", token);
+myHeaders.append("Content-Type", "application/json");
 
-  return fetch(API_ADD_NAMES, options).then((response) => {
-    if (!response.ok) throw new Error();
+const raw = JSON.stringify({names: [...names]});
 
-    return true;
-  });
+const requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+return fetch(API_ADD_NAMES, requestOptions)
+  .then(response => {
+    if(!response.ok) throw new Error()
+  })
+
 };
 //Todo! Logout users if response is 401

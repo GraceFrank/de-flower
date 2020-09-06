@@ -35,7 +35,7 @@ export default ({ data, handleEdit, handleDelete }) => {
                   type="button"
                   className="btn btn-outline-danger  btn-sm mr-5 "
                 >
-                  Danger
+                  Delete
                 </button>
                 <button
                   onClick={() => handleEdit(user)}
