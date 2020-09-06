@@ -12,9 +12,9 @@ const Header = () => {
           type="button"
           className="btn btn-info  btn-sm"
           data-toggle="modal"
-          data-target="#create-user-modal"
+          data-target="#add-name-modal"
         >
-          + Add Flower
+          + Add Names
         </button>
       </div>
     </div>
