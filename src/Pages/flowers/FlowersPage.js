@@ -9,7 +9,7 @@ import AddNamesModal from "./AddNamesModal";
 import { statuses } from "../../config/constants";
 
 const { NEUTRAL, FAILURE, SUCCESS } = statuses;
-const { IN_PROGRESS, COMPLETED } = flowerStatues;
+const { IN_PROGRESS } = flowerStatues;
 
 const FlowersPage = (props) => {
   const { tokenContext } = useContext(AuthContext);
@@ -59,6 +59,7 @@ const FlowersPage = (props) => {
     setNamesToAdd(new Set());
   };
 
+
   useEffect(() => {
     //!todo provide all flowers's context if needed
     setLoadingFlowers(true);
@@ -66,7 +67,7 @@ const FlowersPage = (props) => {
       setFlowerData([...data]);
       setLoadingFlowers(false);
     });
-  }, [flowerStatus]);
+  }, [flowerStatus, token]);
 
   return (
     <div>

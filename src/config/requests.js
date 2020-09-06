@@ -70,4 +70,23 @@ return fetch(API_ADD_NAMES, requestOptions)
   })
 
 };
+
+export  const getFlowerById = (token, id)=>{
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+  };
+  const url = `${API_FLOWERS}/${id}`
+
+  return fetch(url, options).then((response) => {
+    if (!response.ok) throw new Error();
+
+    return response.json().then((data) => {
+      return data.data;
+    });
+  });
+}
 //Todo! Logout users if response is 401
