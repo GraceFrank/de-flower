@@ -88,18 +88,6 @@ const CreateUserModal = ({
                     required
                   />
                 </div>
-                <div class="form-group form-check">
-                  <input
-                    onChange={handleChange}
-                    value={user.isAdmin}
-                    type="checkbox"
-                    class="form-check-input"
-                    id="role"
-                  />
-                  <label class="form-check-label" for="role">
-                    Make Admin
-                  </label>
-                </div>
 
                 <div class="modal-footer">
                   <button

@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect } from "react";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import * as am4plugins from "@amcharts/amcharts4/plugins/sunburst";
@@ -10,7 +10,7 @@ const Sunburst = ({ chartData, chartId }) => {
   const x = useRef(null);
 
   //useEffect
-  useLayoutEffect(() => {
+  useEffect(() => {
     // create chart
     const chart = am4core.create(chartId, am4plugins.Sunburst);
     chart.padding(0, 0, 0, 0);
