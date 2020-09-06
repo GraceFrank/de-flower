@@ -1,4 +1,4 @@
-import { API_USERS, API_FLOWERS } from "./urls";
+import { API_USERS, API_FLOWERS, API_ADD_NAMES } from "./urls";
 
 export const getAllUsers = (token) => {
   const options = {
@@ -50,4 +50,20 @@ export const getFlowers = (token, status) => {
   });
 };
 
+export const addNames = (token, names) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+    body: JSON.stringify(names),
+  };
+
+  return fetch(API_ADD_NAMES, options).then((response) => {
+    if (!response.ok) throw new Error();
+
+    return true;
+  });
+};
 //Todo! Logout users if response is 401
