@@ -58,7 +58,7 @@ const NavBar = () => {
           <ul className="navbar-nav mr-auto">{menuItems}</ul>
 
           <span className="navbar-text mr-5">
-            <div className="dropdown">
+            <div className="dropdown text-white">
               <a
                 className="btn btn-info dropdown-toggle"
                 href="#"
@@ -71,7 +71,6 @@ const NavBar = () => {
                 <ProfileIcon style={{ height: "20px", width: "25px" }} />
                 {user.firstName}
               </a>
-
               <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a
                   onClick={logOut}

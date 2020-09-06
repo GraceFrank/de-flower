@@ -9,8 +9,9 @@ import { statuses } from "../../config/constants";
 const { NEUTRAL, SUCCESS, FAILURE } = statuses;
 
 const UsersPage = () => {
-  const { tokenContext } = useContext(AuthContext);
+  const { tokenContext, userContext } = useContext(AuthContext);
   const [token] = tokenContext;
+  const [user] = userContext;
 
   //load all users in the Begining
   const [users, setUsers] = useState([]);
@@ -69,7 +70,7 @@ const UsersPage = () => {
       </div>
       <div className="container-fluid ">
         <div style={{ background: "#F0FDFF" }} className="w-80">
-          <UsersTable data={users} />
+          <UsersTable data={users} loggedInUser={user.email} />
         </div>
       </div>
       <CreateUserModal

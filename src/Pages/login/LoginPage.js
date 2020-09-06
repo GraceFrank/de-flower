@@ -46,7 +46,7 @@ const LoginPage = (props) => {
         response.json().then((data) => {
           //Todo! Get the Actual User Content
           //Todo! remove hardcoded role
-          setUser({ ...data, role: "superAdmin" });
+          setUser({ ...data.data });
           setToken(data.data.token);
           setSuccess(true);
           setMessage("Login Successful!");
