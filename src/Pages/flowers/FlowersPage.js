@@ -65,12 +65,12 @@ const FlowersPage = (props) => {
       setFlowerData([...data]);
       setLoadingFlowers(false);
     });
-  }, []);
+  }, [flowerStatus]);
 
   return (
     <div>
       <Nav />
-      <Header />
+      <Header flowerStatus={flowerStatus} setFlowerStatus={setFlowerStatus} />
       <ActiveFlowers data={flowerData} loading={loadingFlowers} />
       <AddNamesModal
         currentName={currentName}

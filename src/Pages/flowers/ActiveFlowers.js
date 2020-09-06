@@ -7,13 +7,13 @@ const { BASE_COLOR_CODE, ADMIN_COLOR_CODE, USER_COLOR_CODE } = colors;
 const Flowers = ({ data, loading }) => {
   const flowers = data.map((item) => {
     return (
-      <div key={item._id}>
+      <div className="m-4" key={item._id}>
         <Sunburst chartId={item._id} chartData={[item.flower]} />
       </div>
     );
   });
 
-  return <div>{!loading ? flowers : <Spinner />}</div>;
+  return <div className="">{!loading ? flowers : <Spinner />}</div>;
 };
 
 export default Flowers;
