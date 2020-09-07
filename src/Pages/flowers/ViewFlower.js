@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import Spinner from "../../components/Spinner";
 import Sunburst from "./sunburst";
 import Nav from "../../components/Navbar";
 import { getFlowerById } from "../../config/requests";
-import { ReactComponent as BackArrow } from "../../images/arrow.svg";
+import { FLOWERS } from "../../config/paths";
 
 const ViewFlowerPage = (props) => {
   const { tokenContext } = useContext(AuthContext);
@@ -60,15 +60,12 @@ function Header() {
       style={{ height: "80px" }}
       className="shadow-sm bg-white container-fluid w-100"
     >
-      <div className=" container d-flex h-100 justify-content-between align-items-center ">
-        <button
-          type="button"
-          className="btn btn-info  btn-sm"
-          data-toggle="modal"
-          data-target="#create-user-modal"
-        >
-          <BackArrow style={{ height: "20px", weight: "20px" }} /> Flowers
-        </button>
+      <div className=" container d-flex h-100 align-items-center ">
+        <Link to={FLOWERS}>
+          <button type="button" className="btn btn-info  btn-sm">
+            &larr; Flowers
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ const Sunburst = ({ chartData, chartId }) => {
     level0SeriesTemplate.labels.template.truncate = true;
     level0SeriesTemplate.labels.template.hideOversized = true;
     level0SeriesTemplate.labels.template.text = "{name}";
-    level0SeriesTemplate.tooltipText = "{name}";
+    level0SeriesTemplate.slices.template.tooltipText = "{name}";
 
     level0SeriesTemplate.labels.template.adapter.add("rotation", function (
       rotation,
