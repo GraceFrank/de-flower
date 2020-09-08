@@ -1,6 +1,6 @@
 import React from "react";
 
-const EditUserModal = ({ handleChange, user }) => {
+const CreateUserModal = ({ handleChange, user }) => {
   return (
     <>
       <div class="form-group">
@@ -53,4 +53,4 @@ const EditUserModal = ({ handleChange, user }) => {
   );
 };
 
-export default EditUserModal;
+export default CreateUserModal;
