@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Nav from "../../components/Navbar";
 import UsersTable from "./UsersTable";
-import { getAllUsers, createUser } from "../../config/requests";
+import { getAllUsers, createUser, updateUser } from "../../config/requests";
 import UserModal from "./UserModal";
 import { statuses } from "../../config/constants";
 
@@ -33,6 +33,7 @@ const UsersPage = () => {
         setModalLoading(false);
         setModalStatus(SUCCESS);
         loadUsers(token, setUsers);
+        setNewUser({});
       })
       .catch(() => {
         setModalLoading(false);
@@ -53,7 +54,22 @@ const UsersPage = () => {
   };
 
   const handleDeleteUser = () => {};
-  const handleEditUser = () => {};
+
+  const handleEditUser = (e) => {
+    e.preventDefault();
+    setModalLoading(true);
+    updateUser(token, newUser)
+      .then(() => {
+        setModalLoading(false);
+        setModalStatus(SUCCESS);
+        loadUsers(token, setUsers);
+        setNewUser({});
+      })
+      .catch(() => {
+        setModalLoading(false);
+        setModalStatus(FAILURE);
+      });
+  };
 
   return (
     <div style={{ background: "#F0FDFF", height: "100vh" }}>
@@ -78,6 +94,7 @@ const UsersPage = () => {
         <div style={{ background: "#F0FDFF" }} className="w-80">
           <UsersTable
             data={users}
+            setUser={setNewUser}
             loggedInUser={user.email}
             setModalState={setModalState}
           />

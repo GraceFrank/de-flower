@@ -103,4 +103,25 @@ export const deleteUser = (token, ID) => {
     return true;
   });
 };
+
+export const updateUser = (token, user) => {
+  const myHeaders = new Headers();
+  myHeaders.append("x-auth-token", token);
+  myHeaders.append("Content-Type", "application/json");
+  delete user.email;
+
+  const raw = JSON.stringify(user);
+
+  const requestOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  return fetch(API_USERS, requestOptions).then((response) => {
+    if (!response.ok) throw new Error();
+  });
+};
+
 //Todo! Logout users if response is 401

@@ -6,6 +6,7 @@ const iconStyle = { height: "70px", width: "70px", marginRight: "20px" };
 
 export default ({
   data,
+  setUser,
   handleEdit,
   handleDelete,
   loggedInUser,
@@ -37,7 +38,10 @@ export default ({
 
               <div>
                 <button
-                  onClick={() => handleDelete(user)}
+                  onClick={() => {
+                    setModalState("delete");
+                    setUser(user);
+                  }}
                   disabled={user.email === loggedInUser}
                   type="button"
                   className="btn btn-outline-danger  btn-sm mr-5 "
@@ -45,9 +49,14 @@ export default ({
                   Delete
                 </button>
                 <button
-                  onClick={() => handleEdit(user)}
+                  onClick={() => {
+                    setModalState("edit");
+                    setUser(user);
+                  }}
                   type="button"
                   className="btn btn-info  btn-sm"
+                  data-toggle="modal"
+                  data-target="#create-user-modal"
                 >
                   Edit
                 </button>
