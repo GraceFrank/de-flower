@@ -119,7 +119,7 @@ export const updateUser = (token, user) => {
     redirect: "follow",
   };
 
-  return fetch(API_USERS, requestOptions).then((response) => {
+  return fetch(`${API_USERS}/${user._id}`, requestOptions).then((response) => {
     if (!response.ok) throw new Error();
   });
 };

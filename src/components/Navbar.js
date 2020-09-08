@@ -80,11 +80,7 @@ const NavBar = () => {
                   Log Out
                 </a>
                 <Link to={MY_PROFILE}>
-                  <a
-                    onClick={logOut}
-                    className="dropdown-item text-dark"
-                    href="#"
-                  >
+                  <a className="dropdown-item text-dark" href="#">
                     My Profile
                   </a>
                 </Link>
