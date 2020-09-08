@@ -4,7 +4,13 @@ import { ReactComponent as StaffIcon } from "../../images/staff.svg";
 
 const iconStyle = { height: "70px", width: "70px", marginRight: "20px" };
 
-export default ({ data, handleEdit, handleDelete, loggedInUser }) => {
+export default ({
+  data,
+  handleEdit,
+  handleDelete,
+  loggedInUser,
+  setModalState,
+}) => {
   const users = data.map((user) => {
     const { email, firstName, lastName, role } = user;
     return (
@@ -36,7 +42,7 @@ export default ({ data, handleEdit, handleDelete, loggedInUser }) => {
                   type="button"
                   className="btn btn-outline-danger  btn-sm mr-5 "
                 >
-                  Delete 
+                  Delete
                 </button>
                 <button
                   onClick={() => handleEdit(user)}

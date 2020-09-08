@@ -3,7 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Nav from "../../components/Navbar";
 import UsersTable from "./UsersTable";
 import { getAllUsers, createUser } from "../../config/requests";
-import CreateUserModal from "./createUserModal";
+import UserModal from "./UserModal";
 import { statuses } from "../../config/constants";
 
 const { NEUTRAL, SUCCESS, FAILURE } = statuses;
@@ -20,34 +20,40 @@ const UsersPage = () => {
     loadUsers(token, setUsers);
   }, []);
 
+  const [modalState, setModalState] = useState("create");
   //Create User
-  const [creatingUser, setCreatingUser] = useState(false);
+  const [modalLoading, setModalLoading] = useState(false);
   const [newUser, setNewUser] = useState({});
-  const [creatingUserStatus, setCreatingUserStatus] = useState(NEUTRAL);
+  const [modalStatus, setModalStatus] = useState(NEUTRAL);
   const handleCreateUser = (e) => {
     e.preventDefault();
-    setCreatingUser(true);
+    setModalLoading(true);
     createUser(token, newUser)
       .then(() => {
-        setCreatingUser(false);
-        setCreatingUserStatus(SUCCESS);
+        setModalLoading(false);
+        setModalStatus(SUCCESS);
         loadUsers(token, setUsers);
       })
       .catch(() => {
-        setCreatingUser(false);
-        setCreatingUserStatus(FAILURE);
+        setModalLoading(false);
+        setModalStatus(FAILURE);
       });
   };
 
   const handleInputChange = (event) => {
     const { value, id } = event.target;
+    console.log(value, id);
+    console.log(newUser);
     setNewUser({ ...newUser, [id]: value });
   };
 
   const handleCloseCreateUserModal = () => {
-    setCreatingUserStatus(NEUTRAL);
+    setModalStatus(NEUTRAL);
     setNewUser({});
   };
+
+  const handleDeleteUser = () => {};
+  const handleEditUser = () => {};
 
   return (
     <div style={{ background: "#F0FDFF", height: "100vh" }}>
@@ -70,16 +76,23 @@ const UsersPage = () => {
       </div>
       <div className="container-fluid ">
         <div style={{ background: "#F0FDFF" }} className="w-80">
-          <UsersTable data={users} loggedInUser={user.email} />
+          <UsersTable
+            data={users}
+            loggedInUser={user.email}
+            setModalState={setModalState}
+          />
         </div>
       </div>
-      <CreateUserModal
+      <UserModal
+        state={modalState}
         handleCreateUser={handleCreateUser}
         handleChange={handleInputChange}
         user={newUser}
-        loading={creatingUser}
-        status={creatingUserStatus}
+        loading={modalLoading}
+        status={modalStatus}
         handleModalClose={handleCloseCreateUserModal}
+        handleEditUser={handleEditUser}
+        handleDeleteUser={handleDeleteUser}
       />
     </div>
   );

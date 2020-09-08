@@ -52,26 +52,24 @@ export const getFlowers = (token, status) => {
 
 export const addNames = (token, names) => {
   const myHeaders = new Headers();
-myHeaders.append("x-auth-token", token);
-myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("x-auth-token", token);
+  myHeaders.append("Content-Type", "application/json");
 
-const raw = JSON.stringify({names: [...names]});
+  const raw = JSON.stringify({ names: [...names] });
 
-const requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  return fetch(API_ADD_NAMES, requestOptions).then((response) => {
+    if (!response.ok) throw new Error();
+  });
 };
 
-return fetch(API_ADD_NAMES, requestOptions)
-  .then(response => {
-    if(!response.ok) throw new Error()
-  })
-
-};
-
-export  const getFlowerById = (token, id)=>{
+export const getFlowerById = (token, id) => {
   const options = {
     method: "GET",
     headers: {
@@ -79,7 +77,7 @@ export  const getFlowerById = (token, id)=>{
       "x-auth-token": token,
     },
   };
-  const url = `${API_FLOWERS}/${id}`
+  const url = `${API_FLOWERS}/${id}`;
 
   return fetch(url, options).then((response) => {
     if (!response.ok) throw new Error();
@@ -88,5 +86,21 @@ export  const getFlowerById = (token, id)=>{
       return data.data;
     });
   });
-}
+};
+
+export const deleteUser = (token, ID) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+  };
+  const url = `${API_USERS}/${ID}`;
+
+  return fetch(url, options).then((response) => {
+    if (!response.ok) throw new Error();
+    return true;
+  });
+};
 //Todo! Logout users if response is 401
