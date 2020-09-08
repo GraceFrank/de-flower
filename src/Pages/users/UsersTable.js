@@ -45,6 +45,8 @@ export default ({
                   disabled={user.email === loggedInUser}
                   type="button"
                   className="btn btn-outline-danger  btn-sm mr-5 "
+                  data-toggle="modal"
+                  data-target="#create-user-modal"
                 >
                   Delete
                 </button>

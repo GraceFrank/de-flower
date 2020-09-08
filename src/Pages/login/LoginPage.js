@@ -42,6 +42,7 @@ const LoginPage = (props) => {
           setMessage("Invalid Email or Password");
           setSuccess(false);
           setLoading(false);
+          return;
         }
         response.json().then((data) => {
           //Todo! Get the Actual User Content
@@ -56,9 +57,8 @@ const LoginPage = (props) => {
       })
       .catch(() => {
         //Todo set success to false remove user
-        setToken("random token");
         setMessage("Error logging in. Please try again later");
-        setSuccess(true);
+        setSuccess(false);
         setLoading(false);
       });
   };

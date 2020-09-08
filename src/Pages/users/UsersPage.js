@@ -2,7 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Nav from "../../components/Navbar";
 import UsersTable from "./UsersTable";
-import { getAllUsers, createUser, updateUser } from "../../config/requests";
+import {
+  getAllUsers,
+  createUser,
+  updateUser,
+  deleteUser,
+} from "../../config/requests";
 import UserModal from "./UserModal";
 import { statuses } from "../../config/constants";
 
@@ -53,7 +58,21 @@ const UsersPage = () => {
     setNewUser({});
   };
 
-  const handleDeleteUser = () => {};
+  const handleDeleteUser = (e) => {
+    e.preventDefault();
+    setModalLoading(true);
+    deleteUser(token, newUser._id)
+      .then(() => {
+        setModalLoading(false);
+        setModalStatus(SUCCESS);
+        loadUsers(token, setUsers);
+        setNewUser({});
+      })
+      .catch(() => {
+        setModalLoading(false);
+        setModalStatus(FAILURE);
+      });
+  };
 
   const handleEditUser = (e) => {
     e.preventDefault();
